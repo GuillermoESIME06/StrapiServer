@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_web_descripcions",
+  "info": {
+    "displayName": "Descripcion",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "seccionPagina": {
+      "type": "string"
+    },
+    "desdePrecio": {
+      "type": "string"
+    },
+    "textoBoton": {
+      "type": "string"
+    },
+    "precioSinFormato": {
+      "type": "string"
+    },
+    "descripcion1": {
+      "type": "text"
+    },
+    "descripcion2": {
+      "type": "text"
+    }
+  }
+}

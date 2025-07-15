@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_web_globals",
+  "info": {
+    "displayName": "global",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "src": {
+      "type": "string"
+    },
+    "deepLinks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "web.lista-atributo-valor2"
+    }
+  }
+}

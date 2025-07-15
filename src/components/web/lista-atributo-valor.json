@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_web_lista_atributo_valors",
+  "info": {
+    "displayName": "ListaAtributoValor",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "atributo": {
+      "type": "string"
+    },
+    "valor": {
+      "type": "string"
+    },
+    "Submenu": {
+      "type": "component",
+      "repeatable": true,
+      "component": "web.lista-atributo-valor2"
+    }
+  }
+}

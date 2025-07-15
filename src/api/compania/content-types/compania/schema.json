@@ -1,0 +1,59 @@
+{
+  "kind": "singleType",
+  "collectionName": "companias",
+  "info": {
+    "singularName": "compania",
+    "pluralName": "companias",
+    "displayName": "compania",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "contact": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "gtmId": {
+      "type": "string"
+    },
+    "Menu": {
+      "type": "component",
+      "repeatable": true,
+      "component": "web.lista-atributo-valor"
+    },
+    "SocialLinks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "web.lista-atributo-valor2"
+    },
+    "textMessage": {
+      "type": "string"
+    },
+    "whatsappNumber": {
+      "type": "string"
+    },
+    "colores": {
+      "type": "component",
+      "repeatable": false,
+      "component": "web.colores"
+    }
+  }
+}

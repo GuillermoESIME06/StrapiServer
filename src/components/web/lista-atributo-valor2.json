@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_web_lista_atributo_valor2s",
+  "info": {
+    "displayName": "ListaAtributoValor2",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "atributo": {
+      "type": "string"
+    },
+    "valor": {
+      "type": "string"
+    }
+  }
+}

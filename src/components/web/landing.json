@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_web_landings",
+  "info": {
+    "displayName": "Landing",
+    "icon": "stack",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "imagenfondo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

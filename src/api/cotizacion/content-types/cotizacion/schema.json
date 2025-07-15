@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cotizacions",
+  "info": {
+    "singularName": "cotizacion",
+    "pluralName": "cotizacions",
+    "displayName": "cotizacion",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nombre": {
+      "type": "string"
+    },
+    "correo": {
+      "type": "string"
+    },
+    "telefono": {
+      "type": "string"
+    },
+    "vendedor": {
+      "type": "string"
+    },
+    "fecha": {
+      "type": "datetime"
+    },
+    "info": {
+      "type": "text"
+    },
+    "url": {
+      "type": "string"
+    }
+  }
+}
