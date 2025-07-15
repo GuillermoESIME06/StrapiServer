@@ -1,66 +1,29 @@
-# ----------------------------------------
-# Stage 1 - Build dependencies and app
-# ----------------------------------------
+# Creating multi-stage build for production
 FROM node:18-alpine AS build
-
-# Instalar paquetes de sistema necesarios
-RUN apk add --no-cache \
-    python3 \
-    make \
-    g++ \
-    vips-dev \
-    git
-
-# Establecer variables de entorno
+RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev git > /dev/null 2>&1
 ENV NODE_ENV=production
 
-# Crear carpeta de trabajo
-WORKDIR /opt/app
-
-# Copiar package.json y yarn.lock primero para aprovechar caché
+WORKDIR /opt/
 COPY package.json yarn.lock ./
+RUN yarn global add node-gyp
 
-# Instalar dependencias (sin --production para que build funcione)
-RUN yarn install --frozen-lockfile
-
-# Copiar el resto del código fuente
+RUN yarn config set network-timeout 600000 -g && yarn install --
+ENV PATH /opt/node_modules/.bin:$PATH
+WORKDIR /opt/app
 COPY . .
-
-# Construir Strapi
 RUN yarn build
 
-# ----------------------------------------
-# Stage 2 - Create production image
-# ----------------------------------------
+# Creating final production image
 FROM node:18-alpine
-
-# Instalar dependencias de imágenes en producción
 RUN apk add --no-cache vips-dev
-
 ENV NODE_ENV=production
-
-# Crear carpeta de trabajo
+WORKDIR /opt/
+COPY --from=build /opt/node_modules ./node_modules
 WORKDIR /opt/app
+COPY --from=build /opt/app ./
+ENV PATH /opt/node_modules/.bin:$PATH
 
-# Copiar sólo node_modules y build generado
-COPY --from=build /opt/app/node_modules ./node_modules
-COPY --from=build /opt/app/dist ./dist
-COPY --from=build /opt/app/package.json ./package.json
-COPY --from=build /opt/app/.env ./.env
-COPY --from=build /opt/app/config ./config
-COPY --from=build /opt/app/src ./src
-COPY --from=build /opt/app/public ./public
-
-# (Opcional) Si tienes otras carpetas necesarias para tu proyecto, añádelas:
-# COPY --from=build /opt/app/plugins ./plugins
-# COPY --from=build /opt/app/.cache ./.cache
-
-# Cambiar usuario si prefieres (o dejar root)
 RUN chown -R node:node /opt/app
 USER node
-
-# Exponer el puerto de Strapi
 EXPOSE 1337
-
-# Comando de inicio
 CMD ["yarn", "start"]
